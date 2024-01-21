@@ -2,11 +2,13 @@ import {useEffect} from 'react';
 import {jwtDecode} from 'jwt-decode';
 import { useSelector } from "react-redux"
 import { useForm } from "react-hook-form"
-import {addUser, removeUser} from '../slices/userSlice'
+import {addUser, removeUser} from '../Slices/userSlice'
 import {useDispatch} from 'react-redux'
 import './LoginCSS.css'
 import { Button } from 'react-bootstrap';
 import React from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function Signup(){
@@ -15,13 +17,25 @@ function Signup(){
     let userData = useSelector(state=>state.child1a)
     const dispatch = useDispatch()
 
+    const navigate = useNavigate();
+
     const {register, handleSubmit, formState:{errors}} = useForm()
 
-    const onFormSubmit = (userData)=>{
-        let actionobj = addUser(userData.username)
-        console.log(userData)
-        console.log(actionobj)
-        dispatch(actionobj)
+    const onFormSubmit = async(userData)=>{
+        axios.post('https://notescraftserver-shivateja28-ofg3.onrender.com/user-api/create-user', userData)
+        .then(response=>{
+            if(response.data.message == "New User created"){
+                alert(response.data.message)
+                navigate('/login');
+            }
+            else if(response.data.message == "email has already taken..Plz choose another"){
+                alert(response.data.message)
+            }
+            console.log(userData)
+            console.log(response.data.message)
+        })
+        .catch(error=>alert("Something went wrong in creating user"))
+
     }
 
     function handleCallbackResponse(response){
@@ -47,12 +61,12 @@ function Signup(){
     
     return(
         <>
-            <form onSubmit={handleSubmit(onFormSubmit)} className ='w-25 mx-auto m-5 p-2 pt-5 pb-5 '>
+            <form onSubmit={handleSubmit(onFormSubmit)} className ='mx-auto m-5 p-2 pt-5 pb-5 '>
                 <p className='h1'>Signup</p>
                 <p className='h3 text-start ms-5 mt-4'>User Email</p>
                                 
-                <input type = "text" id = "un" className="w-75 ms-5 form-control" {...register("username", {required: true})} />
-                {errors.username?.type === 'required' && <p>*Username Required</p>}
+                <input type = "text" id = "un" className="w-75 ms-5 form-control" {...register("email", {required: true})} />
+                {errors.email?.type === 'required' && <p>*email Required</p>}
 
                 <p className='h3 text-start ms-5 mt-4'>Password</p>
                 <input type = "password" id = "pa" className="w-75 ms-5 form-control" {...register("password", {required: true})} />

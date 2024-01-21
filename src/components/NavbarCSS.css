@@ -1,3 +1,133 @@
-.navbar{
-    background: #3AA6B9;
+.navbar {
+    background-color: rgb(64, 56, 176); /* Change this to your desired background color */
+    color: hsl(0, 0%, 100%); /* Text color */
+  }
+  
+  h3 {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  h5{
+    color: white;
+  }
+
+  .nav-link, .navbutton {
+
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .nav-link:hover, .navbutton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .me-auto { /* Right-align navigation links on smaller screens */
+    @media (max-width: 768px) {
+      justify-content: end;
+    }
+  }
+  
+  /* Styles for different states: logged in vs. logged out */
+  
+  .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .logged-out {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .logged-in {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  
+  /* Buttons */
+  
+
+   
+  /* Search bar */
+  
+  .search-input {
+    /* Size and positioning */
+    width: 250px; /* Adjust as needed */
+    height: 35px; /* Adjust as needed */
+    padding: 10px 15px;
+    border: 1px solid rgb(64, 56, 176); /* Match border-success color */
+    border-radius: 5px;
+    margin-right: 10px; /* Consistent spacing */
+    vertical-align: middle; /* Align with other elements */
+  
+    /* Text styling */
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #333;
+  
+    /* Transition effect */
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .search-input:focus {
+    border-color: rgb(64, 56, 176); /* Highlight on focus */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+  }
+  
+  /* Placeholder styling */
+  .search-input::placeholder {
+    color: #999; /* Lighter placeholder text */
+  }
+  
+  /* Responsiveness (modify if needed) */
+  @media (max-width: 768px) {
+    .search-input {
+      width: 50%; /* Adjust for smaller screens */
+    }
+  }
+  
+  
+  /* User info section */
+  
+  .align-self-end {
+    align-self: flex-end;
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+ 
+  
+  .email {
+    font-size: 12px;
+    margin-left: 5px;
+  }
+  
+
+
+  /* Responsiveness (modify if needed) */
+  
+  @media (max-width: 768px) {
+    h3 {
+      font-size: 18px;
+    
+    }
+  
+    .nav-link {
+      padding: 5px 10px;
+    }
+  
+    .button, .email {
+      font-size: 10px;
+    }
+  }
+  
+#dropdown-basic{
+  background-color: rgb(64, 56, 176);
+  border: none;
 }

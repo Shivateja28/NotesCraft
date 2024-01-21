@@ -56,3 +56,14 @@
 .right {
 	float:right;
 }
+
+/* Default styles */
+form {
+  width: 25%;
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 75%;
+  }
+}
